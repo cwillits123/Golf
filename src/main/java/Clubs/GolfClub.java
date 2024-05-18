@@ -1,3 +1,4 @@
+package Clubs;
 public class GolfClub {
   private int yardage;
   private String clubName;

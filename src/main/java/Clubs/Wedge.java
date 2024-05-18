@@ -1,3 +1,4 @@
+package Clubs;
 public class Wedge extends GolfClub{
   private int degrees = 0; 
   public Wedge(int yards, String name) {

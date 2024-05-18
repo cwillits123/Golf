@@ -1,3 +1,4 @@
+package Courses;
 public class Obstacle {
   private int width;
   private int height;
@@ -31,5 +32,9 @@ public class Obstacle {
 
   public int getPositionY() {
     return positionY;
+  }
+
+  public String toString() {
+    return "The obstacle is a " + name + " that is at " + positionX + " and " + positionY + " and is " + height + " tall and " + width + " wide";
   }
 }

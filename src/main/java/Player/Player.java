@@ -1,5 +1,6 @@
-
+package Player;
 import java.lang.Math.*;
+import Clubs.*;
 
 public class Player {
   private String name;

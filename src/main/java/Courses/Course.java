@@ -1,3 +1,4 @@
+package Courses;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -10,9 +11,10 @@ public class Course {
   private int three = 4; 
   private int four = 10; 
   public Course() {
+    course = new ArrayList<Hole>();
     for (int i = 0; i < 18; i++) {
       if (five != 0) {
-        int y = (int) (Math.random() * (690 - 471) + 471);
+        int y = (int) (Math.random() * (650 - 471) + 471);
         course.add(new Hole(5, y));
         five--; 
       } 
@@ -39,6 +41,7 @@ public class Course {
       i++;
       System.out.println("Hole " + i);
       System.out.println(h);
+
     }
   }
 }

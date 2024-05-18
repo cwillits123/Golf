@@ -1,4 +1,9 @@
+package Courses;
 import java.util.Arrays;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+import java.awt.Canvas;
+import java.awt.*;
 
 public class Hole {
   private int par;
@@ -6,6 +11,8 @@ public class Hole {
   private int distance;
   private Obstacle[] obstacles;
   private String[][] golfHole;
+  private int sizeOfGreen;
+  private int sizeOfFairway;
 
 
   /**
@@ -16,26 +23,28 @@ public class Hole {
    * Starts at teebox which is always [0][middle]
    **/
    public Hole(int par, int yards) {
+    this.yards = yards;
+    this.par = par;
      int numObs = (int) (Math.random() * 4) + 1;
      obstacles = new Obstacle[numObs];
      for (int i = 0; i < numObs; i++) {
        int type = (int) (Math.random() * 3 + 0.5);
        if (type >= 0 && type <= 2) {
-         int width = (int) (Math.random() * 10 + 1);
-         int height = (int) (Math.random() * 10 + 1);
-         int positionX = (int) (Math.random() * (yards - 30 - height) + 10);
-         int positionY = (int) (Math.random() * (yards - 30 - width) + 10);
+         int width = (int) (Math.random() * 20 + 10);
+         int height = (int) (Math.random() * 20 + 10);
+         int positionX = (int) (Math.random() * (100) + (yards - 140));
+         int positionY = (int) (Math.random() * (101 - width) + 10);
          obstacles[i] = new Obstacle(width, height, positionX, positionY, "Sand");
        } else {
-         int width = (int) (Math.random() * 20 + 1);
-         int height = (int) (Math.random() * 20 + 1);
-         int positionX = (int) (Math.random() * (yards - 30 - height) + 10);
-         int positionY = (int) (Math.random() * (yards - 30 - width) + 10);
+         int width = (int) (Math.random() * 30 + 10);
+         int height = (int) (Math.random() * 70 + 10);
+         int positionX = (int) (Math.random() * (yards - 30 - height) + 50);
+         int positionY = (int) (Math.random() * (101 - width) + 10);
          obstacles[i] = new Obstacle(width, height, positionX, positionY, "Water");
        }
      }
-     int sizeOfFairway = (int) ((Math.random() * 20 + 0.5) + 30);
-     int sizeOfGreen = (int) ((Math.random() * 10 + 0.5) + 20);
+     sizeOfGreen = (int) ((Math.random() * 10 + 0.5) + 10);
+     sizeOfFairway = (int) ((Math.random() * 20 + 0.5) + sizeOfGreen);
      golfHole = new String[yards + 50][101];
      for (int i = 0; i < yards + 50; i++) {
        for (int j = 0; j < 101; j++) {
@@ -71,6 +80,22 @@ public class Hole {
     return yards;
   }
 
+  public int getPar() {
+    return par;
+  }
+
+  public Obstacle[] getObstacles() {
+    return obstacles;
+  }
+
+  public int getSizeOfGreen() {
+    return sizeOfGreen;
+  }
+
+  public int getSizeOfFairway() {
+    return sizeOfFairway;
+  }
+
   public String toString() {
     String str = "";
     for (String[] b : golfHole) {
@@ -81,11 +106,13 @@ public class Hole {
        }
     return str;
   }
-  
- // public static void main(String[] args) {
- //   Hole hole = new Hole(3, 600);
- //   String[][] a = hole.getGolfHole();
- //   System.out.println(a.length + " " + a[0].length);
+
+  public static void main(String[] args) {
+    Hole hole = new Hole(3, 600);
+    System.out.println(Arrays.toString(hole.getObstacles()));
+    System.out.println(hole);
+    //String[][] a = hole.getGolfHole();
+    //System.out.println(a.length + " " + a[0].length);
     /**
     *for (int i = 0; i < a.length; i++) {
     * for (int j = 0; j < a[0].length; j++) {
@@ -116,5 +143,5 @@ public class Hole {
 //      }
 //      System.out.println();
 //    }
-//  }
+  }
 }
