@@ -12,7 +12,7 @@ public class Course {
   private int four = 10; 
   public Course() {
     course = new ArrayList<Hole>();
-    for (int i = 0; i < 18; i++) {
+    for (int i = 0; i < 19; i++) {
       if (five != 0) {
         int y = (int) (Math.random() * (650 - 471) + 471);
         course.add(new Hole(5, y));

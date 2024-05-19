@@ -1,9 +1,5 @@
 package Courses;
 import java.util.Arrays;
-import java.awt.Graphics;
-import javax.swing.JFrame;
-import java.awt.Canvas;
-import java.awt.*;
 
 public class Hole {
   private int par;
@@ -13,6 +9,7 @@ public class Hole {
   private String[][] golfHole;
   private int sizeOfGreen;
   private int sizeOfFairway;
+  private int stroke;
 
 
   /**
@@ -43,6 +40,7 @@ public class Hole {
          obstacles[i] = new Obstacle(width, height, positionX, positionY, "Water");
        }
      }
+     distance = yards;
      sizeOfGreen = (int) ((Math.random() * 10 + 0.5) + 10);
      sizeOfFairway = (int) ((Math.random() * 20 + 0.5) + sizeOfGreen);
      golfHole = new String[yards + 50][101];
@@ -94,6 +92,22 @@ public class Hole {
 
   public int getSizeOfFairway() {
     return sizeOfFairway;
+  }
+
+  public int getStroke() {
+    return stroke;
+  }
+
+  public void addStroke() {
+    stroke++;
+  }
+
+  public int getDistance() {
+    return distance;
+  }
+
+  public void setDistance(int d) {
+    distance = d;
   }
 
   public String toString() {

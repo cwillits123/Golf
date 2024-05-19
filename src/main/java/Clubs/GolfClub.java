@@ -7,10 +7,7 @@ public class GolfClub {
      yardage = yards; 
      clubName = club;
   }
-  
-  public int getDistance() {
-    return yardage;
-  }
+
   
   public int getYardage() {
     return yardage;

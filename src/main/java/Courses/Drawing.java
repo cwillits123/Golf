@@ -1,10 +1,10 @@
 package Courses;
 
-import java.awt.Canvas;
-import java.awt.Graphics;
 import javax.swing.JFrame;
-import java.awt.Color;
-import java.util.ArrayList;
+import Clubs.*;
+import Player.*;
+import java.awt.*;
+import java.util.*;
 
 
 public class Drawing extends Canvas {
@@ -17,14 +17,32 @@ public class Drawing extends Canvas {
     public static void main(String[] args) {
         Course c = new Course();
         ArrayList<Hole> h = c.getCourse();
-        for (int i = 0; i < h.size(); i++) {
-            JFrame frame = new JFrame("Hole " + (i + 1));
-            Canvas canvas = new Drawing(h.get(i));
-            canvas.setSize(1500, 300);
-            frame.add(canvas);
-            frame.pack();
-            frame.setVisible(true);
-        }
+        //for (int i = 0; i < h.size(); i++) {
+            //JFrame frame = new JFrame("Hole " + (i + 1));
+            //Canvas canvas = new Drawing(h.get(i));
+            //canvas.setSize(1500, 300);
+            //frame.add(canvas);
+            //frame.pack();
+            //frame.setVisible(true);
+        //}
+        Player p1 = new Player("Billy", 40, 10);
+        Hole h1 = h.get(0);
+        JFrame frame = new JFrame("Hole " + (1));
+        Drawing canvas = new Drawing(h1);
+        canvas.setSize(1500, 300);
+        frame.add(canvas);
+        frame.pack();
+        frame.setVisible(true);
+        Scorecard s = new Scorecard(c);
+        System.out.println(s);
+        Driver d1 = new Driver();
+        p1.getSurface(h1);
+        int[] a = p1.swing(d1, 10, h1);
+        System.out.println(Arrays.toString(a));
+        p1.getSurface(h1);
+        canvas.drawSwing();
+        s.updateScore();
+        System.out.println(s);
     }
 
     public void paint(Graphics g) {
@@ -76,5 +94,10 @@ public class Drawing extends Canvas {
         g.fillRect(0,0,1500,10);
         g.fillRect(0,202,1500,300);
         g.fillRect(2*(hole.getYards() + 50), 0, 1500,300);
+        g.setColor(Color.white);
+        g.fillOval(2*(Ball.getPosX()) + 10, 2*(Ball.getPosY())+10, 4, 4);
+    }
+    public void drawSwing() {
+        repaint();
     }
 }
