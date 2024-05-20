@@ -17,14 +17,15 @@ public class Drawing extends Canvas {
     public static void main(String[] args) {
         Course c = new Course();
         ArrayList<Hole> h = c.getCourse();
-        //for (int i = 0; i < h.size(); i++) {
-            //JFrame frame = new JFrame("Hole " + (i + 1));
-            //Canvas canvas = new Drawing(h.get(i));
-            //canvas.setSize(1500, 300);
-            //frame.add(canvas);
-            //frame.pack();
-            //frame.setVisible(true);
-        //}
+        for (int i = 0; i < h.size(); i++) {
+            Ball.placeBallOnTee(); 
+            JFrame frame = new JFrame("Hole " + (i + 1));
+            Canvas canvas = new Drawing(h.get(i));
+            canvas.setSize(1500, 300);
+            frame.add(canvas);
+            frame.pack();
+            frame.setVisible(true);
+        }
         Player p1 = new Player("Billy", 40, 10);
         Hole h1 = h.get(0);
         JFrame frame = new JFrame("Hole " + (1));

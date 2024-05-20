@@ -26,4 +26,9 @@ public class Ball {
     public static int getPosY() {
         return posY;
     }
+
+    public static void placeBallOnTee() {
+        posX = 0;
+        posY = 50;
+    }
 }
