@@ -2,21 +2,26 @@ package Clubs;
 public class Wedge extends GolfClub{
   private int degrees = 0; 
   public Wedge(String name) {
+    super(0, name);
+    setDegrees(name);
+  }
+
+  public void setDegrees(String name){
     if (name.equals("PitchingWedge")){
       degrees = 46;
-      super(120, name); 
+      setYards(120);
     }
     else if (name.equals("GapWedge")){
       degrees = 50;
-      super(110, name);
+      setYards(110);
     }
     else if (name.equals("SandWedge")){
       degrees = 54;
-      super(100, name); 
+      setYards(100);
     }
     else if (name.equals("LobWedge")){
       degrees = 60;
-      super(90, name);
+      setYards(900);
     }
   }
 }
