@@ -16,4 +16,8 @@ public class GolfClub {
   public String getName() {
     return clubName;
   }
+
+  public void setYardage(int yards) {
+    yardage = yards;
+  }
 }

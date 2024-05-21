@@ -34,16 +34,23 @@ public class Player {
   
   //returns the yards of the swing
   public int[] swing(GolfClub club, double power, Hole h) {
-    int yards = (int) (Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
-    System.out.println(yards + "Yards");
+    int yards;
+    if (useRangeFinder(h) < 0) {
+      yards = -(int) (Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
+    } else {
+      yards = (int) (Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
+    }
     double accuracy = Math.toRadians(getAccuracy());
-    System.out.println(accuracy + "Degrees");
     yardsOffCenter = (int) (Math.sin(accuracy) * yards);
     //Overhit out of bounds is 2 stroke pentalty and hit back where you were
     h.addStroke();
-    if (!(yardsOffCenter + Ball.getPosY() >= 101 || yardsOffCenter + Ball.getPosY() < 0) && !(Ball.getPosX() + yards >= h.getYards() + 50)) {
+    if (!(yardsOffCenter + Ball.getPosY() >= 101 || yardsOffCenter + Ball.getPosY() < 0) && !(Ball.getPosX() + yards >= h.getYards() + 50 || Ball.getPosX() + yards <= 0)) {
       Ball.placeBall(yards + Ball.getPosX(), yardsOffCenter + Ball.getPosY());
       h.setDistance(h.getDistance() - yards);
+      if (getSurface(h).equals("Water")) {
+        Ball.placeBall(Ball.getPosX() - yards, Ball.getPosY() - yardsOffCenter);
+        h.setDistance(h.getDistance() + yards);
+      }
     }
     int[] yardsAndAccuracy = {yards, yardsOffCenter};
     return yardsAndAccuracy;
