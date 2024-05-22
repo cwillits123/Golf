@@ -18,20 +18,25 @@ public class Drawing extends Canvas {
         super();
         hole = h;
         p1 = p;
-        tracker = 1;
     }
     public static void incTracker() {
         tracker++;
     }
 
-    public static void play(Course c) {
+    public static void resetTracker() {
+        tracker = 1;
+    }
+
+    public static int getTracker() {
+        return tracker;
+    }
+
+    public static void play(Course c, Hole h1, int number) {
 
         //Hole Graphics
-        while (tracker <= 18) {
-            ArrayList<Hole> h = c.getCourse();
+        
             Player p1 = new Player("Billy", 40, 10);
-            Hole h1 = h.get(tracker - 1);
-            JFrame frame = new JFrame("Hole " + tracker);
+            JFrame frame = new JFrame("Hole " + (number + 1));
             JButton scoreButton = new JButton("Scorecard"); //to click to view scorecard
             final JTextField power = new JTextField();
             power.enableInputMethods(true);
@@ -40,6 +45,10 @@ public class Drawing extends Canvas {
             final JFrame frame1 = new JFrame("Club Selector");
             final Drawing canvas = new Drawing(h1, p1);
             JButton swingB = new JButton("Swing");
+            JLabel holeLabel = new JLabel("Distance: " + p1.useRangeFinder(h1));
+            holeLabel.setLocation(50,210);
+            holeLabel.setVisible(true);
+            frame.add(holeLabel);
             swingB.setBounds(50, 250, 100, 50);
             frame.add(swingB);
             frame.add(scoreButton);
@@ -116,9 +125,8 @@ public class Drawing extends Canvas {
             frame.setVisible(true);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             if(Ball.getPosX() == h1.getYards() && Ball.getPosY() == 50) {
-                tracker++;
+                incTracker();
             }
-        }
     }
 
     public void paint(Graphics g) {
