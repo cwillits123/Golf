@@ -98,7 +98,7 @@ public class Drawing extends Canvas {
             //Scoreboard Graphics
             final JFrame frame2 = new JFrame("Scorecard");
             JPanel panel2 = new JPanel();
-            Integer[][] i = new Integer[1][19];
+            Integer[][] i = new Integer[19][1];
             JTable table = new JTable(s.getScore(), i);
             JButton okButton2 = new JButton("Ok");
             ActionListener okListen3 = new ActionListener() {
