@@ -12,7 +12,7 @@ public class Drawing extends Canvas {
     private Hole hole;
     private Player p1;
     private static double pow;
-    private static int tracker;
+    private static int tracker = 1;
 
     public Drawing(Hole h, Player p) {
         super();
