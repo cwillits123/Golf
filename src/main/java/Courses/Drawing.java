@@ -17,7 +17,7 @@ public class Drawing extends Canvas {
     public Drawing(Hole h, Player p) {
         super();
         hole = h;
-        p1 = p;
+        this.p1 = p;
     }
     public static void incTracker() {
         tracker++;
@@ -31,11 +31,9 @@ public class Drawing extends Canvas {
         return tracker;
     }
 
-    public static void play(Course c, Hole h1, int number) {
+    public static void play(Course c, Hole h1, int number, Player p2) {
 
         //Hole Graphics
-        
-            Player p1 = new Player("Billy", 40, 10);
             JFrame frame = new JFrame("Hole " + (number + 1));
             JButton scoreButton = new JButton("Scorecard"); //to click to view scorecard
             final JTextField power = new JTextField();
@@ -43,10 +41,10 @@ public class Drawing extends Canvas {
             power.setColumns(5);
             scoreButton.setBounds(250, 250, 100, 50);
             final JFrame frame1 = new JFrame("Club Selector");
-            final Drawing canvas = new Drawing(h1, p1);
+            final Drawing canvas = new Drawing(h1, p2);
             JButton swingB = new JButton("Swing");
-            JLabel holeLabel = new JLabel("Distance: " + p1.useRangeFinder(h1));
-            holeLabel.setLocation(50,210);
+            JLabel holeLabel = new JLabel("Distance: " + p2.useRangeFinder(h1) + ".");
+            holeLabel.setLocation(50,220);
             holeLabel.setVisible(true);
             frame.add(holeLabel);
             swingB.setBounds(50, 250, 100, 50);

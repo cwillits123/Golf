@@ -33,8 +33,9 @@ public class Scorecard{
             if (i == 18) {
                 score[2][i] = sumScore;
             } else {
-                score[2][i] = c1.get(i).getStroke();
-                sumScore += c1.get(i).getStroke();
+                int j = c1.get(i).getStroke();
+                score[2][i] = j;
+                sumScore += j;
             }
         }
     }

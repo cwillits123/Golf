@@ -5,14 +5,12 @@ import Courses.*;
 
 public class Player {
   private String name;
-  private int age;
   private int experience;
   private int yardsOffCenter;
   
 
-  public Player(String n, int a, int e) {
+  public Player(String n, int e) {
     name = n;
-    age = a;
     if (e > 0 && e <= 10) {
       experience = e;
     } else {
@@ -24,9 +22,6 @@ public class Player {
     return name;
   }
 
-  public int getAge() {
-    return age;
-  }
 
   public int getExperience() {
     return experience;
