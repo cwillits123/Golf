@@ -12,103 +12,113 @@ public class Drawing extends Canvas {
     private Hole hole;
     private Player p1;
     private static double pow;
+    private static int tracker;
 
     public Drawing(Hole h, Player p) {
         super();
         hole = h;
         p1 = p;
+        tracker = 1;
     }
-    public static void main(String[] args) {
+    public static void incTracker() {
+        tracker++;
+    }
+
+    public static void play(Course c) {
 
         //Hole Graphics
-        Course c = new Course();
-        ArrayList<Hole> h = c.getCourse();
-        Player p1 = new Player("Billy", 40, 10);
-        Hole h1 = h.get(0);
-        JFrame frame = new JFrame("Hole " + (1));
-        JButton scoreButton = new JButton("Scorecard"); //to click to view scorecard
-        final JTextField power = new JTextField();
-        power.enableInputMethods(true);
-        power.setColumns(5);
-        scoreButton.setBounds(250, 250, 100, 50);
-        final JFrame frame1 = new JFrame("Club Selector");
-        final Drawing canvas = new Drawing(h1, p1);
-        JButton swingB = new JButton("Swing");
-        swingB.setBounds(50, 250, 100, 50);
-        frame.add(swingB);
-        frame.add(scoreButton);
-        canvas.setSize(1500, 300);
-        JPanel panel = new JPanel();
-        frame1.add(panel);
-        JLabel lbl = new JLabel("Select one of the possible choices and click OK. Type in the power: ");
-        lbl.setVisible(true);
+        while (tracker <= 18) {
+            ArrayList<Hole> h = c.getCourse();
+            Player p1 = new Player("Billy", 40, 10);
+            Hole h1 = h.get(tracker - 1);
+            JFrame frame = new JFrame("Hole " + tracker);
+            JButton scoreButton = new JButton("Scorecard"); //to click to view scorecard
+            final JTextField power = new JTextField();
+            power.enableInputMethods(true);
+            power.setColumns(5);
+            scoreButton.setBounds(250, 250, 100, 50);
+            final JFrame frame1 = new JFrame("Club Selector");
+            final Drawing canvas = new Drawing(h1, p1);
+            JButton swingB = new JButton("Swing");
+            swingB.setBounds(50, 250, 100, 50);
+            frame.add(swingB);
+            frame.add(scoreButton);
+            canvas.setSize(1500, 300);
+            JPanel panel = new JPanel();
+            frame1.add(panel);
+            JLabel lbl = new JLabel("Select one of the possible choices and click OK. Type in the power: ");
+            lbl.setVisible(true);
 
-        panel.add(lbl);
-        panel.add(power);
-        GolfBag gb = new GolfBag();
-        ArrayList<GolfClub> choices = gb.getClubs();
-        String[] clubNames = new String[choices.size()];
-        for (int i = 0; i < choices.size(); i++) {
-            clubNames[i] = choices.get(i).getName();
+            panel.add(lbl);
+            panel.add(power);
+            GolfBag gb = new GolfBag();
+            ArrayList<GolfClub> choices = gb.getClubs();
+            String[] clubNames = new String[choices.size()];
+            for (int i = 0; i < choices.size(); i++) {
+                clubNames[i] = choices.get(i).getName();
+            }
+            final JComboBox<String> cb = new JComboBox<String>(clubNames);
+            cb.setVisible(true);
+            final Scorecard s = new Scorecard(c);
+            ActionListener listen = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    frame1.setVisible(true);
+                }
+            };
+            ActionListener listenOK = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    String x = power.getText();
+                    pow = Double.valueOf(x);
+                    frame1.dispose();
+                    canvas.swing(cb,canvas,s);
+                    canvas.repaint();
+                }
+            };
+            JButton okButton = new JButton("Ok");
+            okButton.addActionListener(listenOK);
+            panel.add(okButton);
+            swingB.addActionListener(listen);
+            panel.setLocation(200, 200);
+            frame.add(canvas);
+            frame.pack();
+            panel.add(cb);
+            cb.setVisible(true);
+            frame1.pack();
+
+
+            //Scoreboard Graphics
+            final JFrame frame2 = new JFrame("Scorecard");
+            JPanel panel2 = new JPanel();
+            Integer[][] i = new Integer[1][19];
+            JTable table = new JTable(s.getScore(), i);
+            JButton okButton2 = new JButton("Ok");
+            ActionListener okListen3 = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    frame2.dispose();
+                }
+            };
+            panel2.add(table);
+            panel2.add(okButton2);
+            okButton2.addActionListener(okListen3);
+            table.setVisible(true);
+            frame2.add(panel2);
+            frame2.pack();
+            ActionListener listenScore = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    frame2.setVisible(true);
+                }
+            };
+            scoreButton.addActionListener(listenScore);
+
+
+
+
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            if(Ball.getPosX() == h1.getYards() && Ball.getPosY() == 50) {
+                tracker++;
+            }
         }
-        final JComboBox<String> cb = new JComboBox<String>(clubNames);
-        cb.setVisible(true);
-        final Scorecard s = new Scorecard(c);
-        ActionListener listen = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame1.setVisible(true);
-         }
-        };
-        ActionListener listenOK = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String x = power.getText();
-                pow = Double.valueOf(x);
-                frame1.dispose();
-                canvas.swing(cb,canvas,s);
-                canvas.repaint();
-            }
-        };
-        JButton okButton = new JButton("Ok");
-        okButton.addActionListener(listenOK);
-        panel.add(okButton);
-        swingB.addActionListener(listen);
-        panel.setLocation(200, 200);
-        frame.add(canvas);
-        frame.pack();
-        panel.add(cb);
-        cb.setVisible(true);
-        frame1.pack();
-
-
-        //Scoreboard Graphics
-        final JFrame frame2 = new JFrame("Scorecard");
-        JPanel panel2 = new JPanel();
-        Integer[][] i = new Integer[1][19];
-        JTable table = new JTable(s.getScore(), i);
-        JButton okButton2 = new JButton("Ok");
-        ActionListener okListen3 = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame2.dispose();
-            }
-        };
-        panel2.add(table);
-        panel2.add(okButton2);
-        okButton2.addActionListener(okListen3);
-        table.setVisible(true);
-        frame2.add(panel2);
-        frame2.pack();
-        ActionListener listenScore = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame2.setVisible(true);
-            }
-        };
-        scoreButton.addActionListener(listenScore);
-
-
-
-
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void paint(Graphics g) {
