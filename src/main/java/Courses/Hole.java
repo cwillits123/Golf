@@ -34,8 +34,8 @@ public class Hole {
          obstacles[i] = new Obstacle(width, height, positionX, positionY, "Sand");
        } else {
          int width = (int) (Math.random() * 30 + 10);
-         int height = (int) (Math.random() * 70 + 10);
-         int positionX = (int) (Math.random() * (yards - 30 - height) + 50);
+         int height = (int) (Math.random() * 60 + 10);
+         int positionX = (int) (Math.random() * (yards - 50 - height) + 50);
          int positionY = (int) (Math.random() * (101 - width) + 10);
          obstacles[i] = new Obstacle(width, height, positionX, positionY, "Water");
        }

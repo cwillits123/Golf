@@ -11,6 +11,7 @@ import java.awt.event.*;
 public class Drawing extends Canvas {
     private Hole hole;
     private Player p1;
+    private static double pow;
 
     public Drawing(Hole h, Player p) {
         super();
@@ -18,46 +19,94 @@ public class Drawing extends Canvas {
         p1 = p;
     }
     public static void main(String[] args) {
+
+        //Hole Graphics
         Course c = new Course();
         ArrayList<Hole> h = c.getCourse();
         Player p1 = new Player("Billy", 40, 10);
         Hole h1 = h.get(0);
         JFrame frame = new JFrame("Hole " + (1));
+        JButton scoreButton = new JButton("Scorecard"); //to click to view scorecard
+        final JTextField power = new JTextField();
+        power.enableInputMethods(true);
+        power.setColumns(5);
+        scoreButton.setBounds(250, 250, 100, 50);
+        final JFrame frame1 = new JFrame("Club Selector");
         final Drawing canvas = new Drawing(h1, p1);
         JButton swingB = new JButton("Swing");
         swingB.setBounds(50, 250, 100, 50);
         frame.add(swingB);
+        frame.add(scoreButton);
         canvas.setSize(1500, 300);
         JPanel panel = new JPanel();
-        frame.add(panel);
-        JLabel lbl = new JLabel("Select one of the possible choices and click OK");
+        frame1.add(panel);
+        JLabel lbl = new JLabel("Select one of the possible choices and click OK. Type in the power: ");
         lbl.setVisible(true);
 
         panel.add(lbl);
+        panel.add(power);
         GolfBag gb = new GolfBag();
         ArrayList<GolfClub> choices = gb.getClubs();
         String[] clubNames = new String[choices.size()];
         for (int i = 0; i < choices.size(); i++) {
             clubNames[i] = choices.get(i).getName();
         }
-
         final JComboBox<String> cb = new JComboBox<String>(clubNames);
-
         cb.setVisible(true);
         final Scorecard s = new Scorecard(c);
         ActionListener listen = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Button selected: " + e.getActionCommand());
-                canvas.swing(cb, canvas, s);
-                canvas.repaint();
+                frame1.setVisible(true);
          }
         };
+        ActionListener listenOK = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String x = power.getText();
+                pow = Double.valueOf(x);
+                frame1.dispose();
+                canvas.swing(cb,canvas,s);
+                canvas.repaint();
+            }
+        };
+        JButton okButton = new JButton("Ok");
+        okButton.addActionListener(listenOK);
+        panel.add(okButton);
         swingB.addActionListener(listen);
         panel.setLocation(200, 200);
         frame.add(canvas);
         frame.pack();
         panel.add(cb);
         cb.setVisible(true);
+        frame1.pack();
+
+
+        //Scoreboard Graphics
+        final JFrame frame2 = new JFrame("Scorecard");
+        JPanel panel2 = new JPanel();
+        Integer[][] i = new Integer[1][19];
+        JTable table = new JTable(s.getScore(), i);
+        JButton okButton2 = new JButton("Ok");
+        ActionListener okListen3 = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame2.dispose();
+            }
+        };
+        panel2.add(table);
+        panel2.add(okButton2);
+        okButton2.addActionListener(okListen3);
+        table.setVisible(true);
+        frame2.add(panel2);
+        frame2.pack();
+        ActionListener listenScore = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame2.setVisible(true);
+            }
+        };
+        scoreButton.addActionListener(listenScore);
+
+
+
+
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -107,10 +156,10 @@ public class Drawing extends Canvas {
             }
         }
         g.setColor(brushColor);
-        //g.fillRect(0,0,10,300);
-        //g.fillRect(0,0,1500,10);
-        //g.fillRect(0,202,1500,300);
-        //g.fillRect(2*(hole.getYards() + 50), 0, 1500,300);
+        g.fillRect(0,0,10,300);
+        g.fillRect(0,0,1500,10);
+        g.fillRect(0,202,1500,300);
+        g.fillRect(2*(hole.getYards() + 50), 0, 1500,300);
         g.setColor(Color.white);
         g.fillOval(2*(Ball.getPosX()) + 10, 2*(Ball.getPosY())+10, 4, 4);
     }
@@ -122,67 +171,67 @@ public class Drawing extends Canvas {
         String club = cb.getSelectedItem().toString();
         if (club.equals("Driver")) {
             Driver d1 = new Driver();
-            p1.swing(d1, 10, hole);
+            p1.swing(d1, pow, hole);
             canvas.drawSwing();
             s.updateScore();
         } else if (club.equals("PitchingWedge")) {
             Wedge w1 = new Wedge("PitchingWedge");
-            p1.swing(w1, 10, hole);
+            p1.swing(w1, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("GapWedge")) {
             Wedge w1 = new Wedge("GapWedge");
-            p1.swing(w1, 10, hole);
+            p1.swing(w1, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("SandWedge")) {
             Wedge w1 = new Wedge("SandWedge");
-            p1.swing(w1, 10, hole);
+            p1.swing(w1, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("LobWedge")) {
             Wedge w1 = new Wedge("LobWedge");
-            p1.swing(w1, 10, hole);
+            p1.swing(w1, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("3 Iron")) {
             Iron3 i3 = new Iron3();
-            p1.swing(i3, 10, hole);
+            p1.swing(i3, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("4 Iron")) {
             Iron4 i4 = new Iron4();
-            p1.swing(i4, 10, hole);
+            p1.swing(i4, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("5 Iron")) {
             Iron5 i5 = new Iron5();
-            p1.swing(i5, 10, hole);
+            p1.swing(i5, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("6 Iron")) {
             Iron6 i6 = new Iron6();
-            p1.swing(i6, 10, hole);
+            p1.swing(i6, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("7 Iron")) {
             Iron7 i7 = new Iron7();
-            p1.swing(i7, 10, hole);
+            p1.swing(i7, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("8 Iron")) {
             Iron8 i8 = new Iron8();
-            p1.swing(i8, 10, hole);
+            p1.swing(i8, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("9 Iron")) {
             Iron9 i9 = new Iron9();
-            p1.swing(i9, 10, hole);
+            p1.swing(i9, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("Wood")) {
             Wood w2 = new Wood();
-            p1.swing(w2, 10, hole);
+            p1.swing(w2, pow, hole);
             canvas.drawSwing();
             s.updateScore();    
         } else if (club.equals("Putter")) {

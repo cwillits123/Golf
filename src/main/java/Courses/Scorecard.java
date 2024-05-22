@@ -2,12 +2,13 @@ package Courses;
 
 import java.util.*;
 
+
 public class Scorecard{
-    private int[][] score;
+    private Integer[][] score;
     private ArrayList<Hole> c1;
     private int sumScore = 0;
     public Scorecard(Course c) {
-        score = new int[3][19];
+        score = new Integer[3][19];
         for (int i = 0; i < score[0].length; i++) {
             score[0][i] = i + 1;
             if (i == 18) {
@@ -38,9 +39,13 @@ public class Scorecard{
         }
     }
 
+    public Integer[][] getScore() {
+        return score;
+    }
+
     public String toString() {
         String str = "|";
-        for (int[] i : score) {
+        for (Integer[] i : score) {
             for (int j : i) {
                 str += " " + j + " |";
             }

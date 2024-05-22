@@ -53,6 +53,7 @@ public class Player {
       }
     }
     int[] yardsAndAccuracy = {yards, yardsOffCenter};
+    System.out.print(getSurface(h));
     return yardsAndAccuracy;
   }
 
