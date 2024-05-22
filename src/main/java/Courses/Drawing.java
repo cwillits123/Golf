@@ -189,67 +189,54 @@ public class Drawing extends Canvas {
             Driver d1 = new Driver();
             p1.swing(d1, pow, hole);
             canvas.drawSwing();
-            s.updateScore();
         } else if (club.equals("PitchingWedge")) {
             Wedge w1 = new Wedge("PitchingWedge");
             p1.swing(w1, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();    
         } else if (club.equals("GapWedge")) {
             Wedge w1 = new Wedge("GapWedge");
             p1.swing(w1, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();  
         } else if (club.equals("SandWedge")) {
             Wedge w1 = new Wedge("SandWedge");
             p1.swing(w1, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();  
         } else if (club.equals("LobWedge")) {
             Wedge w1 = new Wedge("LobWedge");
             p1.swing(w1, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();   
         } else if (club.equals("3 Iron")) {
             Iron3 i3 = new Iron3();
             p1.swing(i3, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();    
         } else if (club.equals("4 Iron")) {
             Iron4 i4 = new Iron4();
             p1.swing(i4, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();    
         } else if (club.equals("5 Iron")) {
             Iron5 i5 = new Iron5();
             p1.swing(i5, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();    
         } else if (club.equals("6 Iron")) {
             Iron6 i6 = new Iron6();
             p1.swing(i6, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();   
         } else if (club.equals("7 Iron")) {
             Iron7 i7 = new Iron7();
             p1.swing(i7, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();    
         } else if (club.equals("8 Iron")) {
             Iron8 i8 = new Iron8();
             p1.swing(i8, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();    
         } else if (club.equals("9 Iron")) {
             Iron9 i9 = new Iron9();
             p1.swing(i9, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();   
         } else if (club.equals("Wood")) {
             Wood w2 = new Wood();
             p1.swing(w2, pow, hole);
-            canvas.drawSwing();
-            s.updateScore();    
+            canvas.drawSwing();   
         } else if (club.equals("Putter")) {
             Putter p2 = new Putter();
             p2.swing(hole);
