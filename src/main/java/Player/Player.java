@@ -34,6 +34,10 @@ public class Player {
   public int[] swing(GolfClub club, double power, Hole h) {
     int yards;
     direction.setDirectionToHole(h);
+    double dir = direction.getDirection();
+    if (dir > 315 && dir < 45) {
+      // Work on adding the direction to be changed based off of the angle to the hole. The orignial code is probably good for when facing hole straight on
+    }
     String surface = getSurface(h);
     if (Ball.getPosX() > h.getYards()) {
       yards = (int) -(Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
@@ -45,7 +49,7 @@ public class Player {
     } else if (surface.equals("Rough")) {
       yards = (int) (yards * 0.75);
     }
-    double accuracy = Math.toRadians(direction.getDirection() - getAccuracy());
+    double accuracy = Math.toRadians(direction.getDirection() + getAccuracy());
     yardsOffCenter = (int) (Math.sin(accuracy) * yards);
     //Overhit out of bounds is 2 stroke pentalty and hit back where you were
     h.addStroke();

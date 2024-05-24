@@ -31,25 +31,28 @@ public class Drawing extends Canvas {
         return tracker;
     }
 
-    public static void play(Course c, Hole h1, int number, Player p2) {
+    public static void play(Course c, final Hole h1, int number, Player p2) {
 
         //Hole Graphics
-            JFrame frame = new JFrame("Hole " + (number + 1));
+            final JFrame frame = new JFrame("Hole " + (number + 1));
             JButton scoreButton = new JButton("Scorecard"); //to click to view scorecard
+            JButton nextHole = new JButton("Next Hole");
             final JTextField power = new JTextField();
             power.enableInputMethods(true);
             power.setColumns(5);
             scoreButton.setBounds(250, 250, 100, 50);
+            nextHole.setBounds(400, 250, 100, 50);
             final JFrame frame1 = new JFrame("Club Selector");
             final Drawing canvas = new Drawing(h1, p2);
             JButton swingB = new JButton("Swing");
             JLabel holeLabel = new JLabel("Distance: " + p2.useRangeFinder(h1) + ".");
-            holeLabel.setLocation(50,220);
+            holeLabel.setBounds(50,220, 100, 50);
             holeLabel.setVisible(true);
-            frame.add(holeLabel);
             swingB.setBounds(50, 250, 100, 50);
             frame.add(swingB);
+            frame.add(holeLabel);
             frame.add(scoreButton);
+            frame.add(nextHole);
             canvas.setSize(1500, 300);
             JPanel panel = new JPanel();
             frame1.add(panel);
@@ -115,16 +118,21 @@ public class Drawing extends Canvas {
                     frame2.setVisible(true);
                 }
             };
+            ActionListener listenHole = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (Ball.getPosX() == h1.getYards() && Ball.getPosY() == 50) {
+                        frame.dispose();
+                    }
+                }
+            };
             scoreButton.addActionListener(listenScore);
+            nextHole.addActionListener(listenHole);
 
 
 
 
             frame.setVisible(true);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            if(Ball.getPosX() == h1.getYards() && Ball.getPosY() == 50) {
-                incTracker();
-            }
     }
 
     public void paint(Graphics g) {
