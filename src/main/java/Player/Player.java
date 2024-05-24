@@ -2,11 +2,13 @@ package Player;
 import java.lang.Math.*;
 import Clubs.*;
 import Courses.*;
+import java.util.Arrays;
 
 public class Player {
   private String name;
   private int experience;
   private int yardsOffCenter;
+  private Direction direction;
   
 
   public Player(String n, int e) {
@@ -16,6 +18,7 @@ public class Player {
     } else {
       throw new IllegalArgumentException("Experience must be between 1 and 10 inclusive");
     }
+    this.direction = new Direction();
   }
 
   public String getName() {
@@ -30,12 +33,19 @@ public class Player {
   //returns the yards of the swing
   public int[] swing(GolfClub club, double power, Hole h) {
     int yards;
-    if (useRangeFinder(h) < 0) {
-      yards = -(int) (Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
+    direction.setDirectionToHole(h);
+    String surface = getSurface(h);
+    if (Ball.getPosX() > h.getYards()) {
+      yards = (int) -(Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
     } else {
       yards = (int) (Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
     }
-    double accuracy = Math.toRadians(getAccuracy());
+    if (surface.equals("Sand")) {
+      yards = (int) (yards * 0.5);
+    } else if (surface.equals("Rough")) {
+      yards = (int) (yards * 0.75);
+    }
+    double accuracy = Math.toRadians(direction.getDirection() - getAccuracy());
     yardsOffCenter = (int) (Math.sin(accuracy) * yards);
     //Overhit out of bounds is 2 stroke pentalty and hit back where you were
     h.addStroke();
@@ -48,7 +58,7 @@ public class Player {
       }
     }
     int[] yardsAndAccuracy = {yards, yardsOffCenter};
-    System.out.print(getSurface(h));
+    System.out.println(Arrays.toString(yardsAndAccuracy));
     return yardsAndAccuracy;
   }
 
@@ -65,6 +75,14 @@ public class Player {
   public String getSurface(Hole h) {
     String[][] g = h.getGolfHole();
     return g[Ball.getPosX()][Ball.getPosY()];
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
+  }
+
+  public Direction getDirection() {
+    return direction;
   }
 
   

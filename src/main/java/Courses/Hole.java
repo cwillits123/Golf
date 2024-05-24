@@ -10,6 +10,7 @@ public class Hole {
   private int sizeOfGreen;
   private int sizeOfFairway;
   private int stroke;
+  private int[] holePosition;
 
 
   /**
@@ -22,6 +23,7 @@ public class Hole {
    public Hole(int par, int yards) {
     this.yards = yards;
     this.par = par;
+    this.holePosition = new int[] {yards, 50};
      int numObs = (int) (Math.random() * 4) + 1;
      obstacles = new Obstacle[numObs];
      for (int i = 0; i < numObs; i++) {
@@ -119,6 +121,10 @@ public class Hole {
           str += "\n";
        }
     return str;
+  }
+
+  public int[] getHoleLocation() {
+    return holePosition;
   }
 
   public static void main(String[] args) {
