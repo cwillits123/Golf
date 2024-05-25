@@ -85,15 +85,15 @@ public class Direction {
         double opposite = ballPos - posHole;
         if (opposite != 0){
             if (yards > ballPosYards) {
-                double hypotenuse = yards - ballPosYards;
-                degrees = Math.toDegrees(Math.asin(opposite / hypotenuse));
+                double adjacent = yards - ballPosYards;
+                degrees = Math.toDegrees(Math.atan(opposite / adjacent));
                 if (degrees < 0) {
-                    degrees = 360 + degrees;
+                    degrees = degrees + 360;
                 }
             } else if (yards < ballPosYards) {
-                double hypotenuse = ballPosYards - yards;
-                degrees = Math.toDegrees(Math.asin(opposite / hypotenuse));
-                degrees = degrees + 180;
+                double adjacent = ballPosYards - yards;
+                degrees = Math.toDegrees(Math.atan(opposite / adjacent));
+                degrees = 180 - degrees;
             } else {
                 degrees = NORTH;
             }

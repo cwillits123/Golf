@@ -31,7 +31,7 @@ public class Drawing extends Canvas {
         return tracker;
     }
 
-    public static void play(Course c, final Hole h1, int number, Player p2) {
+    public static void play(Course c, final Hole h1, int number, final Player p2) {
 
         //Hole Graphics
             final JFrame frame = new JFrame("Hole " + (number + 1));
@@ -45,8 +45,30 @@ public class Drawing extends Canvas {
             final JFrame frame1 = new JFrame("Club Selector");
             final Drawing canvas = new Drawing(h1, p2);
             JButton swingB = new JButton("Swing");
-            JLabel holeLabel = new JLabel("Distance: " + p2.useRangeFinder(h1) + ".");
-            holeLabel.setBounds(50,220, 100, 50);
+            String surface = p2.getSurface(h1);
+            System.out.println(surface);
+            String surfaceString = "";
+            if (surface.equals("|")) {
+                surfaceString += "Fairway";
+            } else if (surface.equals(" ")) {
+                surfaceString += "Green";
+            } else if (surface.equals("#")) {
+                surfaceString += "Rough";
+            } else if (surface.equals("S")) {
+                surfaceString += "Sand";
+            } else if (surface.equals("W")) {
+                surfaceString += "Water";
+            } else if (surface.equals("T")) {
+                surfaceString += "Tee";
+            } else if (surface.equals("^")) {
+                surfaceString += "Brush";
+            } else if (surface.equals("H")) {
+                surfaceString += "Hole";
+            } else {
+                surfaceString += "";
+            }
+            final JLabel holeLabel = new JLabel("Distance: " + p2.useRangeFinder(h1) + "." + "Par: " + h1.getPar() + ". Surface: " + surfaceString);
+            holeLabel.setBounds(50,220, 300, 50);
             holeLabel.setVisible(true);
             swingB.setBounds(50, 250, 100, 50);
             frame.add(swingB);
@@ -81,6 +103,30 @@ public class Drawing extends Canvas {
                     pow = Double.valueOf(x);
                     frame1.dispose();
                     canvas.swing(cb,canvas,s);
+                    String surface = p2.getSurface(h1);
+                    System.out.println(surface);
+                    String surfaceString = "";
+                    if (surface.equals("|")) {
+                        surfaceString = "Fairway";
+                    } else if (surface.equals(" ")) {
+                        surfaceString = "Green";
+                    } else if (surface.equals("#")) {
+                        surfaceString = "Rough";
+                    } else if (surface.equals("S")) {
+                        surfaceString = "Sand";
+                    } else if (surface.equals("W")) {
+                        surfaceString = "Water";
+                    } else if (surface.equals("T")) {
+                        surfaceString = "Tee";
+                    } else if (surface.equals("^")) {
+                        surfaceString = "Brush";
+                    } else if (surface.equals("H")) {
+                        surfaceString = "Hole";
+                    } else {
+                        surfaceString = "";
+                    }
+                    System.out.println(surfaceString);
+                    holeLabel.setText("Distance: " + p2.useRangeFinder(h1) + "." + "Par: " + h1.getPar() + ". Surface: " + surfaceString);
                     canvas.repaint();
                 }
             };
