@@ -23,5 +23,10 @@ public class Wedge extends GolfClub{
       degrees = 60;
       setYardage(113);
     }
+    
+  }
+
+  public int getDegrees() {
+    return degrees;
   }
 }

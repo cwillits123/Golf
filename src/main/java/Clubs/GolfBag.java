@@ -50,4 +50,8 @@ public class GolfBag {
     public ArrayList<GolfClub> getClubs() {
       return clubs;
     }
+
+    public int getGBalls() {
+      return gBalls;
+    }
 }

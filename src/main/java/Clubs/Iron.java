@@ -6,4 +6,8 @@ public class Iron extends GolfClub{
     super(yards, name);
     ironName = name; 
   }
+
+  public String getIronName() {
+    return ironName;
+  }
 }

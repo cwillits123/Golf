@@ -2,7 +2,7 @@ package Player;
 import java.lang.Math;
 import Clubs.*;
 import Courses.*;
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class Player {
   private String name;
