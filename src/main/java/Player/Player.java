@@ -36,7 +36,6 @@ public class Player {
     int[] yardsAndAccuracy = new int[2];
     direction.setDirectionToHole(h);
     double dir = direction.getDirection();
-    System.out.println(dir);
     if ((dir >= 0 && dir < 90)) {
       // Work on adding the direction to be changed based off of the angle to the hole. The orignial code is probably good for when facing hole straight on
       String surface = getSurface(h);
@@ -135,9 +134,6 @@ public class Player {
       yardsAndAccuracy[0] = xDist;
       yardsAndAccuracy[1] = yardsOffCenter;
     }
-    System.out.println("Yards and Accuracy: " + Arrays.toString(yardsAndAccuracy));
-    System.out.println("BallPosX and BallPosY: " + Arrays.toString(new int[] {Ball.getPosX(), Ball.getPosY()}));
-    System.out.println("Surface: " + getSurface(h));
     return yardsAndAccuracy;
   }
 
