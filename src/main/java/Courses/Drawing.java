@@ -54,7 +54,8 @@ public class Drawing extends Canvas {
             final Drawing canvas = new Drawing(h1, p2);
             JButton swingB = new JButton("Swing");
 
-            final JTable highScoreTable = new JTable(HighScoreBoard.getHighScores(), new String[2]);
+            String[][] a = new String[2][1];
+            final JTable highScoreTable = new JTable(HighScoreBoard.getHighScores(), a);
             final JPanel panel5 = new JPanel();
             panel5.add(highScoreTable);
             highScoreTable.setVisible(true);
