@@ -46,7 +46,6 @@ public class Drawing extends Canvas {
             final Drawing canvas = new Drawing(h1, p2);
             JButton swingB = new JButton("Swing");
             String surface = p2.getSurface(h1);
-            System.out.println(surface);
             String surfaceString = "";
             if (surface.equals("|")) {
                 surfaceString += "Fairway";
@@ -104,7 +103,6 @@ public class Drawing extends Canvas {
                     frame1.dispose();
                     canvas.swing(cb,canvas,s);
                     String surface = p2.getSurface(h1);
-                    System.out.println(surface);
                     String surfaceString = "";
                     if (surface.equals("|")) {
                         surfaceString = "Fairway";
@@ -125,7 +123,6 @@ public class Drawing extends Canvas {
                     } else {
                         surfaceString = "";
                     }
-                    System.out.println(surfaceString);
                     holeLabel.setText("Distance: " + p2.useRangeFinder(h1) + "." + "Par: " + h1.getPar() + ". Surface: " + surfaceString);
                     canvas.repaint();
                 }
