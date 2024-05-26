@@ -35,17 +35,30 @@ public class Drawing extends Canvas {
     public static void play(Course c, final Hole h1, int number, final Player p2) {
 
         //Hole Graphics
+            final JFrame finalFrame = new JFrame("High Score");
             final JFrame frame = new JFrame("Hole " + (number + 1));
+
+            final JButton finishGameButton = new JButton("Finish Game");
             JButton scoreButton = new JButton("Scorecard"); //to click to view scorecard
             JButton nextHole = new JButton("Next Hole");
+            
             final JTextField power = new JTextField();
             power.enableInputMethods(true);
             power.setColumns(5);
+
+            finishGameButton.setBounds(600, 250, 100, 50);
             scoreButton.setBounds(250, 250, 100, 50);
             nextHole.setBounds(400, 250, 100, 50);
+
             final JFrame frame1 = new JFrame("Club Selector");
             final Drawing canvas = new Drawing(h1, p2);
             JButton swingB = new JButton("Swing");
+
+            final JTable highScoreTable = new JTable(HighScoreBoard.getHighScores(), new String[2]);
+            final JPanel panel5 = new JPanel();
+            panel5.add(highScoreTable);
+            highScoreTable.setVisible(true);
+            
             String surface = p2.getSurface(h1);
             String surfaceString = "";
             if (surface.equals("|")) {
@@ -67,14 +80,18 @@ public class Drawing extends Canvas {
             } else {
                 surfaceString += "";
             }
+
             final JLabel holeLabel = new JLabel("Distance: " + p2.useRangeFinder(h1) + "." + "Par: " + h1.getPar() + ". Surface: " + surfaceString);
             holeLabel.setBounds(50,220, 300, 50);
             holeLabel.setVisible(true);
+
             swingB.setBounds(50, 250, 100, 50);
             frame.add(swingB);
             frame.add(holeLabel);
             frame.add(scoreButton);
             frame.add(nextHole);
+            frame.add(finishGameButton);
+
             canvas.setSize(1500, 300);
             JPanel panel = new JPanel();
             frame1.add(panel);
@@ -92,6 +109,7 @@ public class Drawing extends Canvas {
             final JComboBox<String> cb = new JComboBox<String>(clubNames);
             cb.setVisible(true);
             final Scorecard s = new Scorecard(c);
+
             ActionListener listen = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     frame1.setVisible(true);
@@ -133,6 +151,19 @@ public class Drawing extends Canvas {
                     canvas.repaint();
                 }
             };
+            ActionListener listenFinishGame = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    frame.dispose();
+                    finalFrame.add(panel5);
+                    if (s.getScore()[2][17] > 0) {
+                        HighScoreBoard.checkHighScore(p2.getName(), s.getSumScore());
+                        finalFrame.setVisible(true);
+                        finalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    }
+                }
+            };
+
+            finishGameButton.addActionListener(listenFinishGame);
             JButton okButton = new JButton("Ok");
             okButton.addActionListener(listenOK);
             panel.add(okButton);

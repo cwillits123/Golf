@@ -40,6 +40,10 @@ public class Scorecard{
         }
     }
 
+    public int getSumScore() {
+        return sumScore;
+    }
+
     public Integer[][] getScore() {
         return score;
     }
