@@ -6,4 +6,6 @@
 
 # Updated 5/24/24. Still need to change the swing in the Player class to aim toward the hole at all times.
 
-# Updated the swing method in player to be working properly and also added a new club (Hybrid and 5 Wood, also changed Wood to 3 Wood) and updated the swing distances of the clubs. Maybe going to work on either making the course less blocky or allowing people to actually put with a new swing method for the putter.
+# 5/26/24 (Morning) Updated the swing method in player to be working properly and also added a new club (Hybrid and 5 Wood, also changed Wood to 3 Wood) and updated the swing distances of the clubs. Maybe going to work on either making the course less blocky or allowing people to actually put with a new swing method for the putter.
+
+# 5/26/24 (4:00 PM) Updated the drawing class to have a HighScoreBoard in it and made the HighScoreBoard class
