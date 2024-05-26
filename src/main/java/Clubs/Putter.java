@@ -9,11 +9,11 @@ public class Putter extends GolfClub{
 
   public void swing(Hole h) {
     int yards = h.getDistance();
-    if (yards < 6){
+    if (Math.abs(yards) < 6){
       h.addStroke();
       Ball.placeBall(h.getYards(), 50);
     }
-    else if (yards < 14){
+    else if (Math.abs(yards) < 14){
       h.addStroke();
       h.addStroke();
       Ball.placeBall(h.getYards(), 50);
