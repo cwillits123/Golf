@@ -36,27 +36,33 @@ public class Player {
     int[] yardsAndAccuracy = new int[2];
     direction.setDirectionToHole(h);
     double dir = direction.getDirection();
+    //System.out.println("HoleYards: " + h.getYards());
+    //System.out.println("Direction: " + dir);
     if ((dir >= 0 && dir < 90)) {
       // Work on adding the direction to be changed based off of the angle to the hole. The orignial code is probably good for when facing hole straight on
       String surface = getSurface(h);
       yards = (int) (Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
+      //System.out.println("yards: " + yards);
       if (surface.equals("S")) {
         yards = (int) (yards * 0.5);
       } else if (surface.equals("#")) {
         yards = (int) (yards * 0.75);
       }
       double actualXDist = Math.cos(Math.toRadians(-dir)) * yards;
+      //System.out.println("ActualXDist: " + actualXDist);
       double accuracy = Math.toRadians(-dir + getAccuracy());
+      //System.out.println("Accuracy: -dir + accuracy : " + accuracy);
       yardsOffCenter = (int) (Math.tan(accuracy) * actualXDist);
       int xDist = (int) actualXDist;
+      //System.out.println("xDist: " + xDist);
       //Overhit out of bounds is 2 stroke pentalty and hit back where you were
       h.addStroke();
       if (!(yardsOffCenter + Ball.getPosY() >= 101 || yardsOffCenter + Ball.getPosY() < 0) && !(Ball.getPosX() + xDist >= h.getYards() + 50 || Ball.getPosX() + xDist <= 0)) {
         Ball.placeBall(xDist + Ball.getPosX(), yardsOffCenter + Ball.getPosY());
         h.setDistance(h.getDistance() - xDist);
-        if (getSurface(h).equals("W")) {
-          Ball.placeBall(Ball.getPosX() - xDist, Ball.getPosY() - yardsOffCenter);
-          h.setDistance(h.getDistance() + xDist);
+        //System.out.println("Surface: " + getSurface(h));
+        if (!getSurface(h).equals("W")) {
+          Ball.setPreviousPos(Ball.getPosX(), Ball.getPosY());
         }
       }
       yardsAndAccuracy[0] = xDist;
@@ -64,47 +70,55 @@ public class Player {
     } else if ((dir >= 90 && dir < 180)) {
       String surface = getSurface(h);
       yards = (int) -(Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
+      //System.out.println("Yards: " + yards);
       if (surface.equals("S")) {
         yards = (int) (yards * 0.5);
       } else if (surface.equals("#")) {
         yards = (int) (yards * 0.75);
       }
-      double actualXDist = Math.cos(Math.toRadians(dir)) * yards;
+      double actualXDist = -(Math.cos(Math.toRadians(dir)) * yards);
+      //System.out.println("ActualXDist: " + actualXDist);
       double accuracy = Math.toRadians(dir + getAccuracy());
+      //System.out.println("Accuracy: dir + accuracy : " + accuracy);
       yardsOffCenter = (int) (Math.sin(accuracy) * actualXDist);
       //Overhit out of bounds is 2 stroke pentalty and hit back where you were
       int xDist = (int) actualXDist;
+      //System.out.println("xDist: " + xDist);
       h.addStroke();
       if (!(yardsOffCenter + Ball.getPosY() >= 101 || yardsOffCenter + Ball.getPosY() < 0) && !(Ball.getPosX() + xDist >= h.getYards() + 50 || Ball.getPosX() + xDist <= 0)) {
         Ball.placeBall(xDist + Ball.getPosX(), yardsOffCenter + Ball.getPosY());
         h.setDistance(h.getDistance() - xDist);
-        if (getSurface(h).equals("W")) {
-          Ball.placeBall(Ball.getPosX() - xDist, Ball.getPosY() - yardsOffCenter);
-          h.setDistance(h.getDistance() + xDist);
+        //System.out.println("Surface: " + getSurface(h));
+        if (!getSurface(h).equals("W")) {
+          Ball.setPreviousPos(Ball.getPosX(), Ball.getPosY());
         }
-      }
+      } 
       yardsAndAccuracy[0] = xDist;
       yardsAndAccuracy[1] = yardsOffCenter;
     } else if ((dir >= 180 && dir < 270)) {
       String surface = getSurface(h);
       yards = (int) -(Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
+      //System.out.println("Yards: " + yards);
       if (surface.equals("S")) {
         yards = (int) (yards * 0.5);
       } else if (surface.equals("#")) {
         yards = (int) (yards * 0.75);
       }
-      double actualXDist = Math.cos(Math.toRadians(dir)) * yards;
+      double actualXDist = -(Math.cos(Math.toRadians(dir)) * yards);
+      //System.out.println("ActualXDist: " + actualXDist);
       double accuracy = Math.toRadians(dir + getAccuracy());
+      //System.out.println("Accuracy: dir + accuracy : " + accuracy);
       yardsOffCenter = (int) (Math.sin(accuracy) * actualXDist);
       //Overhit out of bounds is 2 stroke pentalty and hit back where you were
       int xDist = (int) actualXDist;
+      //System.out.println("xDist: " + xDist);
       h.addStroke();
       if (!(yardsOffCenter + Ball.getPosY() >= 101 || yardsOffCenter + Ball.getPosY() < 0) && !(Ball.getPosX() + xDist >= h.getYards() + 50 || Ball.getPosX() + xDist <= 0)) {
         Ball.placeBall(xDist + Ball.getPosX(), yardsOffCenter + Ball.getPosY());
         h.setDistance(h.getDistance() - xDist);
-        if (getSurface(h).equals("W")) {
-          Ball.placeBall(Ball.getPosX() - xDist, Ball.getPosY() - yardsOffCenter);
-          h.setDistance(h.getDistance() + xDist);
+        //System.out.println("Surface: " + getSurface(h));
+        if (!getSurface(h).equals("W")) {
+          Ball.setPreviousPos(Ball.getPosX(), Ball.getPosY());
         }
       }
       yardsAndAccuracy[0] = xDist;
@@ -112,28 +126,35 @@ public class Player {
     } else if ((dir >= 270 && dir < 360)) {
       String surface = getSurface(h);
       yards = (int) (Math.random() * 30 + (club.getYardage() * (power * 0.1) - 15));
+      //System.out.println("yards: " + yards);
       if (surface.equals("S")) {
         yards = (int) (yards * 0.5);
       } else if (surface.equals("#")) {
         yards = (int) (yards * 0.75);
       }
       double actualXDist = Math.cos(Math.toRadians(-dir)) * yards;
+      //System.out.println("ActualXDist: " + actualXDist);
       double accuracy = Math.toRadians(-dir + getAccuracy());
+      //System.out.println("Accuracy: -dir + accuracy : " + accuracy);
       yardsOffCenter = (int) (Math.sin(accuracy) * actualXDist);
       //Overhit out of bounds is 2 stroke pentalty and hit back where you were
       int xDist = (int) actualXDist;
+      //System.out.println("xDist: " + xDist);
       h.addStroke();
       if (!(yardsOffCenter + Ball.getPosY() >= 101 || yardsOffCenter + Ball.getPosY() < 0) && !(Ball.getPosX() + xDist >= h.getYards() + 50 || Ball.getPosX() + xDist <= 0)) {
         Ball.placeBall(xDist + Ball.getPosX(), yardsOffCenter + Ball.getPosY());
         h.setDistance(h.getDistance() - xDist);
-        if (getSurface(h).equals("W")) {
-          Ball.placeBall(Ball.getPosX() - xDist, Ball.getPosY() - yardsOffCenter);
-          h.setDistance(h.getDistance() + xDist);
+        //System.out.println("Surface: " + getSurface(h));
+        if (!getSurface(h).equals("W")) {
+          Ball.setPreviousPos(Ball.getPosX(), Ball.getPosY());
         }
       }
       yardsAndAccuracy[0] = xDist;
       yardsAndAccuracy[1] = yardsOffCenter;
     }
+    //System.out.println("Yards and Accuracy: " + Arrays.toString(yardsAndAccuracy));
+    //System.out.println("BallX and BallY: " + Arrays.toString(new int[] {Ball.getPosX(), Ball.getPosY()}));
+    //System.out.println("----------------------------------------");
     return yardsAndAccuracy;
   }
 

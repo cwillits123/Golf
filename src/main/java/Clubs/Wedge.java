@@ -9,19 +9,19 @@ public class Wedge extends GolfClub{
   public void setDegrees(String name){
     if (name.equals("PitchingWedge")){
       degrees = 46;
-      setYardage(120);
+      setYardage(146);
     }
     else if (name.equals("GapWedge")){
       degrees = 50;
-      setYardage(110);
+      setYardage(135);
     }
     else if (name.equals("SandWedge")){
       degrees = 54;
-      setYardage(100);
+      setYardage(124);
     }
     else if (name.equals("LobWedge")){
       degrees = 60;
-      setYardage(900);
+      setYardage(113);
     }
   }
 }

@@ -94,6 +94,14 @@ public class Direction {
                 double adjacent = ballPosYards - yards;
                 degrees = Math.toDegrees(Math.atan(opposite / adjacent));
                 degrees = 180 - degrees;
+            } else if (yards == ballPosYards) {
+                if (ballPos > posHole) {
+                    degrees = EAST;
+                } else if (ballPos < posHole) {
+                    degrees = WEST;
+                } else {
+                    degrees = NORTH;
+                }
             } else {
                 degrees = NORTH;
             }

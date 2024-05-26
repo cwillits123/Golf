@@ -1,7 +1,7 @@
 package Clubs;
 public class Iron8 extends Iron{
   public Iron8(){
-    super(142, "8 Iron");
+    super(164, "8 Iron");
 
   }
 }

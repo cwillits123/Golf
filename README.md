@@ -5,3 +5,5 @@
 # Updated 5/24/24. Changed the player class to take a position and allow a direction to hit the ball to aim toward the hole automatically. Might add something to allow the player to set the direction they are facing. Hopefully I will be able to make courses that are not straight in the future and actually have real dimensions.
 
 # Updated 5/24/24. Still need to change the swing in the Player class to aim toward the hole at all times.
+
+# Updated the swing method in player to be working properly and also added a new club (Hybrid and 5 Wood, also changed Wood to 3 Wood) and updated the swing distances of the clubs. Maybe going to work on either making the course less blocky or allowing people to actually put with a new swing method for the putter.

@@ -6,6 +6,7 @@ import Player.*;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
+import java.lang.Thread;
 
 
 public class Drawing extends Canvas {
@@ -101,7 +102,12 @@ public class Drawing extends Canvas {
                     String x = power.getText();
                     pow = Double.valueOf(x);
                     frame1.dispose();
-                    canvas.swing(cb,canvas,s);
+                    try {
+                        canvas.swing(cb,canvas,s);
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
                     String surface = p2.getSurface(h1);
                     String surfaceString = "";
                     if (surface.equals("|")) {
@@ -165,6 +171,7 @@ public class Drawing extends Canvas {
                 public void actionPerformed(ActionEvent e) {
                     if (Ball.getPosX() == h1.getYards() && Ball.getPosY() == 50) {
                         frame.dispose();
+                        Ball.placeBallOnTee();
                     }
                 }
             };
@@ -234,59 +241,142 @@ public class Drawing extends Canvas {
         repaint();
     }
 
-    public void swing(JComboBox<String> cb, Drawing canvas, Scorecard s) {
+    public void swing(JComboBox<String> cb, Drawing canvas, Scorecard s) throws InterruptedException {
         String club = cb.getSelectedItem().toString();
         if (club.equals("Driver")) {
             Driver d1 = new Driver();
             p1.swing(d1, pow, hole);
             canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
+            canvas.drawSwing();
         } else if (club.equals("PitchingWedge")) {
             Wedge w1 = new Wedge("PitchingWedge");
             p1.swing(w1, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
+            canvas.drawSwing();
+        } else if (club.equals("Hybrid")) {
+            Hybrid h1 = new Hybrid();
+            p1.swing(h1, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();    
         } else if (club.equals("GapWedge")) {
             Wedge w1 = new Wedge("GapWedge");
             p1.swing(w1, pow, hole);
-            canvas.drawSwing();  
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
+            canvas.drawSwing();
         } else if (club.equals("SandWedge")) {
             Wedge w1 = new Wedge("SandWedge");
             p1.swing(w1, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();  
         } else if (club.equals("LobWedge")) {
             Wedge w1 = new Wedge("LobWedge");
             p1.swing(w1, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();   
         } else if (club.equals("3 Iron")) {
             Iron3 i3 = new Iron3();
             p1.swing(i3, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();    
         } else if (club.equals("4 Iron")) {
             Iron4 i4 = new Iron4();
             p1.swing(i4, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();    
         } else if (club.equals("5 Iron")) {
             Iron5 i5 = new Iron5();
             p1.swing(i5, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();    
         } else if (club.equals("6 Iron")) {
             Iron6 i6 = new Iron6();
             p1.swing(i6, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();   
         } else if (club.equals("7 Iron")) {
             Iron7 i7 = new Iron7();
             p1.swing(i7, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();    
         } else if (club.equals("8 Iron")) {
             Iron8 i8 = new Iron8();
             p1.swing(i8, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();    
         } else if (club.equals("9 Iron")) {
             Iron9 i9 = new Iron9();
             p1.swing(i9, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();   
-        } else if (club.equals("Wood")) {
-            Wood w2 = new Wood();
-            p1.swing(w2, pow, hole);
+        } else if (club.equals("3 Wood")) {
+            Wood3 w3 = new Wood3();
+            p1.swing(w3, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
+            canvas.drawSwing();   
+        } else if (club.equals("5 Wood")) {
+            Wood5 w5 = new Wood5();
+            p1.swing(w5, pow, hole);
+            canvas.drawSwing();
+            Thread.sleep(2000);
+            if (p1.getSurface(hole).equals("W")) {
+                Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
+            }
             canvas.drawSwing();   
         } else if (club.equals("Putter")) {
             Putter p2 = new Putter();

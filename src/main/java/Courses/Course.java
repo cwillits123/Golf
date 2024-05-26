@@ -18,15 +18,15 @@ public class Course {
         course.add(new Hole(5, y));
         five--; 
       } 
-      else if (three != 0) {
-        int y = (int) (Math.random() * (470 - 251) + 251);
-        course.add(new Hole(3, y));
-        three--; 
-      } 
       else if (four != 0) {
-        int y = (int) (Math.random() * (250 - 150) + 150);
+        int y = (int) (Math.random() * (470 - 251) + 251);
         course.add(new Hole(4, y));
         four--; 
+      } 
+      else if (three != 0) {
+        int y = (int) (Math.random() * (250 - 150) + 150);
+        course.add(new Hole(3, y));
+        three--; 
       }      
     }
     Collections.shuffle(course);
