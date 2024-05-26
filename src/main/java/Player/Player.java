@@ -165,7 +165,7 @@ public class Player {
 
   //returns angle of accuracy of the swing and where it ends up
   public int getAccuracy() {
-    return (int) (Math.random() * (60.0/experience) - (30.0/experience));
+    return (int) (Math.random() * (24.0/experience) - (12.0/experience));
   }
   //Use course to figure out the position of obstacles
   public String getSurface(Hole h) {
