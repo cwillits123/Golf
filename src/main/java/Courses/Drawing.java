@@ -156,8 +156,11 @@ public class Drawing extends Canvas {
                 public void actionPerformed(ActionEvent e) {
                     frame.dispose();
                     finalFrame.add(panel5);
+                    finalFrame.pack();
+                    finalFrame.setVisible(true);
                     if (s.getScore()[2][17] > 0) {
                         HighScoreBoard.checkHighScore(p2.getName(), s.getSumScore());
+                        highScoreTable.repaint();
                         finalFrame.setVisible(true);
                         finalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     }
@@ -347,7 +350,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();    
-        } else if (club.equals("5  - 199")) {
+        } else if (club.equals("5 Iron - 199")) {
             Iron5 i5 = new Iron5();
             p1.swing(i5, pow, hole);
             canvas.drawSwing();
