@@ -105,7 +105,7 @@ public class Drawing extends Canvas {
             ArrayList<GolfClub> choices = gb.getClubs();
             String[] clubNames = new String[choices.size()];
             for (int i = 0; i < choices.size(); i++) {
-                clubNames[i] = choices.get(i).getName();
+                clubNames[i] = choices.get(i).getName() + " - " + choices.get(i).getYardage();
             }
             final JComboBox<String> cb = new JComboBox<String>(clubNames);
             cb.setVisible(true);
@@ -275,7 +275,7 @@ public class Drawing extends Canvas {
 
     public void swing(JComboBox<String> cb, Drawing canvas, Scorecard s) throws InterruptedException {
         String club = cb.getSelectedItem().toString();
-        if (club.equals("Driver")) {
+        if (club.equals("Driver - 300")) {
             Driver d1 = new Driver();
             p1.swing(d1, pow, hole);
             canvas.drawSwing();
@@ -284,7 +284,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();
-        } else if (club.equals("PitchingWedge")) {
+        } else if (club.equals("PitchingWedge - 146")) {
             Wedge w1 = new Wedge("PitchingWedge");
             p1.swing(w1, pow, hole);
             canvas.drawSwing();
@@ -293,7 +293,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();
-        } else if (club.equals("Hybrid")) {
+        } else if (club.equals("Hybrid - 231")) {
             Hybrid h1 = new Hybrid();
             p1.swing(h1, pow, hole);
             canvas.drawSwing();
@@ -302,7 +302,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();    
-        } else if (club.equals("GapWedge")) {
+        } else if (club.equals("GapWedge - 135")) {
             Wedge w1 = new Wedge("GapWedge");
             p1.swing(w1, pow, hole);
             canvas.drawSwing();
@@ -311,7 +311,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();
-        } else if (club.equals("SandWedge")) {
+        } else if (club.equals("SandWedge - 124")) {
             Wedge w1 = new Wedge("SandWedge");
             p1.swing(w1, pow, hole);
             canvas.drawSwing();
@@ -320,7 +320,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();  
-        } else if (club.equals("LobWedge")) {
+        } else if (club.equals("LobWedge - 113")) {
             Wedge w1 = new Wedge("LobWedge");
             p1.swing(w1, pow, hole);
             canvas.drawSwing();
@@ -329,7 +329,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();   
-        } else if (club.equals("3 Iron")) {
+        } else if (club.equals("3 Iron - 218")) {
             Iron3 i3 = new Iron3();
             p1.swing(i3, pow, hole);
             canvas.drawSwing();
@@ -338,7 +338,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();    
-        } else if (club.equals("4 Iron")) {
+        } else if (club.equals("4 Iron - 209")) {
             Iron4 i4 = new Iron4();
             p1.swing(i4, pow, hole);
             canvas.drawSwing();
@@ -347,7 +347,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();    
-        } else if (club.equals("5 Iron")) {
+        } else if (club.equals("5  - 199")) {
             Iron5 i5 = new Iron5();
             p1.swing(i5, pow, hole);
             canvas.drawSwing();
@@ -356,7 +356,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();    
-        } else if (club.equals("6 Iron")) {
+        } else if (club.equals("6 Iron - 188")) {
             Iron6 i6 = new Iron6();
             p1.swing(i6, pow, hole);
             canvas.drawSwing();
@@ -365,7 +365,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();   
-        } else if (club.equals("7 Iron")) {
+        } else if (club.equals("7 Iron - 176")) {
             Iron7 i7 = new Iron7();
             p1.swing(i7, pow, hole);
             canvas.drawSwing();
@@ -374,7 +374,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();    
-        } else if (club.equals("8 Iron")) {
+        } else if (club.equals("8 Iron - 164")) {
             Iron8 i8 = new Iron8();
             p1.swing(i8, pow, hole);
             canvas.drawSwing();
@@ -383,7 +383,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();    
-        } else if (club.equals("9 Iron")) {
+        } else if (club.equals("9 Iron - 152")) {
             Iron9 i9 = new Iron9();
             p1.swing(i9, pow, hole);
             canvas.drawSwing();
@@ -392,7 +392,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();   
-        } else if (club.equals("3 Wood")) {
+        } else if (club.equals("3 Wood - 259")) {
             Wood3 w3 = new Wood3();
             p1.swing(w3, pow, hole);
             canvas.drawSwing();
@@ -401,7 +401,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();   
-        } else if (club.equals("5 Wood")) {
+        } else if (club.equals("5 Wood - 236")) {
             Wood5 w5 = new Wood5();
             p1.swing(w5, pow, hole);
             canvas.drawSwing();
@@ -410,7 +410,7 @@ public class Drawing extends Canvas {
                 Ball.placeBall(Ball.getPreviousX(), Ball.getPreviousY());
             }
             canvas.drawSwing();   
-        } else if (club.equals("Putter")) {
+        } else if (club.equals("Putter - 0")) {
             Putter p2 = new Putter();
             p2.swing(hole);
             canvas.drawSwing();
